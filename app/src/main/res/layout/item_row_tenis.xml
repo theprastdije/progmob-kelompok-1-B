@@ -7,7 +7,7 @@
     android:padding="@dimen/activity_vertical_margin">
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/img_item_photo"
+        android:id="@+id/img_item_Tenisphoto"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -17,11 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/img_item_photo"
-        android:layout_toRightOf="@id/img_item_photo"
+        android:layout_toEndOf="@id/img_item_Tenisphoto"
+        android:layout_toRightOf="@id/img_item_Tenisphoto"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tv_item_name"
+            android:id="@+id/tv_item_Tenisname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -29,7 +29,7 @@
             android:textStyle="bold"
             tools:text="@string/heroes_name" />
         <TextView
-            android:id="@+id/tv_item_from"
+            android:id="@+id/tv_item_Tenisfrom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"

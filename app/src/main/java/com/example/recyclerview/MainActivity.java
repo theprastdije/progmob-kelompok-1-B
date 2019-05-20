@@ -23,15 +23,16 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Hero> list = new ArrayList<>();
     private ArrayList<Basket> listbasket = new ArrayList<>();
     private ArrayList<BT> listBT = new ArrayList<>();
+    private ArrayList<Tenis> listTenis = new ArrayList<>();
     private static final String TAG = "mainActivity";
-    private String title = "Mode List";
+    private String title = "Futsal";
     private void showSelectedHero(Hero Hero){
         Toast.makeText(this, "Kamu memilih "+Hero.getName(), Toast.LENGTH_SHORT).show();
     }
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-        setActionBarTitle("Mode List");
+        setActionBarTitle("Futsal");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         showRecyclerList();
 
         listBT.addAll(BTData.getListData());
+        showRecyclerList();
+
+        listTenis.addAll(TenisData.getListData());
         showRecyclerList();
     }
 
@@ -70,55 +74,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showRecyclerGrid(){
-        rvCategory.setLayoutManager(new GridLayoutManager(this, 2));
-        GridHeroAdapter gridHeroAdapter = new GridHeroAdapter(this);
-        gridHeroAdapter.setListHero(list);
-        rvCategory.setAdapter(gridHeroAdapter);
-
-        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Log.d(TAG,"onClick: Clickedon.");
-
-                showSelectedHero(list.get(position));
-                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
-
-                intent.putExtra("namechar",HeroesData.getListData().get(position).getName());
-                intent.putExtra("chardesc",HeroesData.getListData().get(position).getFrom());
-                intent.putExtra("imgchar",HeroesData.getListData().get(position).getPhoto());
-                startActivity(intent);
-            }
-        });
-    }
-
-    private void showRecyclerCardView(){
-        rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        CardViewHeroAdapter cardViewHeroAdapter = new CardViewHeroAdapter(this);
-        cardViewHeroAdapter.setListHero(list);
-        rvCategory.setAdapter(cardViewHeroAdapter);
-
-        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Log.d(TAG,"onClick: Clickedon.");
-
-                showSelectedHero(list.get(position));
-                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
-
-                intent.putExtra("namechar",HeroesData.getListData().get(position).getName());
-                intent.putExtra("chardesc",HeroesData.getListData().get(position).getFrom());
-                intent.putExtra("imgchar",HeroesData.getListData().get(position).getPhoto());
-                startActivity(intent);
-            }
-        });
-    }
-
     private void showRecyclerListBasket(){
         rvCategory.setLayoutManager(new LinearLayoutManager(this));
         ListBasketAdapter listBasketAdapter = new ListBasketAdapter(this);
         listBasketAdapter.setListBasket(listbasket);
         rvCategory.setAdapter(listBasketAdapter);
+
+        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Log.d(TAG,"onClick: Clickedon.");
+
+                showSelectedHero(list.get(position));
+                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
+
+                intent.putExtra("namechar",BasketData.getListData().get(position).getbasketName());
+                intent.putExtra("chardesc",BasketData.getListData().get(position).getBasketFrom());
+                intent.putExtra("imgchar",BasketData.getListData().get(position).getBasketPhoto());
+                startActivity(intent);
+            }
+        });
     }
 
     private void showRecyclerListBT(){
@@ -126,6 +101,41 @@ public class MainActivity extends AppCompatActivity {
         ListBTAdapter listBTAdapter = new ListBTAdapter(this);
         listBTAdapter.setListBT(listBT);
         rvCategory.setAdapter(listBTAdapter);
+        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Log.d(TAG,"onClick: Clickedon.");
+
+                showSelectedHero(list.get(position));
+                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
+
+                intent.putExtra("namechar",BTData.getListData().get(position).getBTName());
+                intent.putExtra("chardesc",BTData.getListData().get(position).getBTFrom());
+                intent.putExtra("imgchar",BTData.getListData().get(position).getBTPhoto());
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void showRecyclerListTenis(){
+        rvCategory.setLayoutManager(new LinearLayoutManager(this));
+        ListTenisAdapter listTenisAdapter = new ListTenisAdapter(this);
+        listTenisAdapter.setListTenis(listTenis);
+        rvCategory.setAdapter(listTenisAdapter);
+        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Log.d(TAG,"onClick: Clickedon.");
+
+                showSelectedHero(list.get(position));
+                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
+
+                intent.putExtra("namechar",TenisData.getListData().get(position).getTenisName());
+                intent.putExtra("chardesc",TenisData.getListData().get(position).getTenisFrom());
+                intent.putExtra("imgchar",TenisData.getListData().get(position).getTenisPhoto());
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -140,27 +150,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_list:
-                setActionBarTitle("Mode List");
+                setActionBarTitle("Futsal");
                 showRecyclerList();
                 break;
-            case R.id.action_grid:
-                setActionBarTitle("Mode Grid");
-                showRecyclerGrid();
-                break;
-            case R.id.action_cardview:
-                setActionBarTitle("Mode CardView");
-                showRecyclerCardView();
-                break;
             case R.id.action_listbasket:
-                setActionBarTitle("Mode List basket");
+                setActionBarTitle("Basket");
                 showRecyclerListBasket();
                 break;
             case R.id.action_listBT:
-                setActionBarTitle("Mode List BT");
+                setActionBarTitle("Bulu Tangkis");
                 showRecyclerListBT();
                 break;
+            case R.id.action_listTenis:
+                setActionBarTitle("Tenis");
+                showRecyclerListTenis();
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
