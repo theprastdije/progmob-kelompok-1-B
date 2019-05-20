@@ -1,10 +1,13 @@
 package com.example.menudashboardsportshub;
 
-import android.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+
+import com.example.menudashboardsportshub.R;
 
 public class MainActivity extends AppCompatActivity {
+    private RecyclerView rvCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,16 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
         rvCategory = findViewById(R.id.rv_category);
         rvCategory.setHasFixedSize(true);
-
-        list.addAll(BasketData.getListData());
-        showRecyclerList();
-    }
-
-    private void showRecyclerList() {
-        AlertDialog.Builder rvCategory;
-        rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        ListBasketAdapter listBasketAdapter = new ListBasketAdapter(this);
-        listBasketAdapter.setListBasket(list);
-        rvCategory.setAdapter(listBasketAdapter);
     }
 }
+

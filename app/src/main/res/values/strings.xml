@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sports Hub</string>
+    <string name="field_name">field name</string>
+    <string name="description">description</string>
 </resources>
