@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvCategory;
     private ArrayList<Hero> list = new ArrayList<>();
     private ArrayList<Basket> listbasket = new ArrayList<>();
+    private ArrayList<BT> listBT = new ArrayList<>();
     private static final String TAG = "mainActivity";
     private String title = "Mode List";
     private void showSelectedHero(Hero Hero){
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         showRecyclerList();
 
         listbasket.addAll(BasketData.getListData());
+        showRecyclerList();
+
+        listBT.addAll(BTData.getListData());
         showRecyclerList();
     }
 
@@ -117,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
         rvCategory.setAdapter(listBasketAdapter);
     }
 
+    private void showRecyclerListBT(){
+        rvCategory.setLayoutManager(new LinearLayoutManager(this));
+        ListBTAdapter listBTAdapter = new ListBTAdapter(this);
+        listBTAdapter.setListBT(listBT);
+        rvCategory.setAdapter(listBTAdapter);
+    }
+
 
 
     @Override
@@ -143,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_listbasket:
                 setActionBarTitle("Mode List basket");
                 showRecyclerListBasket();
+                break;
+            case R.id.action_listBT:
+                setActionBarTitle("Mode List BT");
+                showRecyclerListBT();
                 break;
         }
 

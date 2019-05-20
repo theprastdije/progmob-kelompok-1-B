@@ -17,4 +17,8 @@
         android:id="@+id/action_listbasket"
         android:title="@string/Basket"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_listBT"
+        android:title="@string/BT"
+        app:showAsAction="never"/>
 </menu>
