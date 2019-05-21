@@ -64,6 +64,6 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.button1:
                 Toast.makeText(this, "Berhasil Membooking", Toast.LENGTH_SHORT).show();
         }
-    }//test
+    }
 }
 
