@@ -5,12 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "GalerryActivity";
 
@@ -19,8 +22,10 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         Log.d(TAG, "onCreate: started");
-
         getIncomingIntent();
+        Button button1 = findViewById(R.id.button1);
+
+        button1.setOnClickListener(this);
     }
 
     public void getIncomingIntent(){
@@ -51,6 +56,14 @@ public class GalleryActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(Imgchar)
                 .into(image);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.button1:
+                Toast.makeText(this, "Berhasil Membooking", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
